@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Gallery</title>
+    <style>
+      /* Style for the gallery */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+
+      .gallery img {
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        margin: 10px;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <script src="ur.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header_left">
+        <div class="home">
+          <a href="ppp.html"
+            ><span class="material-symbols-outlined" style="font-size: 3.2rem">
+              home
+            </span></a
+          >
+        </div>
+      </div>
+      <div class="clock">
+        <div id="time"></div>
+      </div>
+    </header>
+    <main>
+      <div class="gallery">
+        <img src="tees/blue_mockup_front_tbg (Custom).png" alt="Image 1" />
+        <img src="tees/blue_mockup_back_tbg (Custom).png" alt="Image 2" />
+        <img src="tees/marine_mockup_front_tbg (Custom).png" alt="Image 3" />
+        <img src="tees/marine_mockup_back_tbg (Custom).png" alt="Image 4" />
+        <img src="tees/spatter_pink_bbg (Custom).png" alt="Image 5" />
+        <img src="tees/spatter_red_bbg (Custom).png" alt="Image 6" />
+        <img src="tees/spatter_white_bbg (Custom).png" alt="Image 7" />
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
