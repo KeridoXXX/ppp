@@ -199,6 +199,27 @@
         activeDraggableElement = null;
       }
 
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        // Display an alert if the user is on a mobile device
+        alert(
+          "Kan se du er på mobil! Nogle af mine skoleprojekter kan bedst opleves på en større skærm!"
+        );
+        const desktop = document.querySelector(".desktop");
+        const isGrid = desktop.classList.toggle("grid-layout");
+        // Switch to grid layout
+        desktop.style.display = "grid";
+        desktop.style.gridTemplateColumns =
+          "repeat(auto-fill, minmax(150px, 1fr))";
+        desktop.style.gridGap = "1.5rem";
+        draggableElements.forEach((element) => {
+          element.style.position = "static";
+        });
+      }
+
       // prøv at lave en linkt ag rundt om hele diven
       // eller prøv at lav en eventlistener click på diven som highligther linket under med en sej effekt
       // sorting funktionalitet med et grid
