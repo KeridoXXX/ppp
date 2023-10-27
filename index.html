@@ -6,12 +6,31 @@
     <title>SKRIVEBORDET</title>
     <link rel="stylesheet" href="style.css" />
     <script src="ur.js"></script>
+    <script src="modal.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
   </head>
   <body>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <h2>Welcome to my PC desktop.</h2>
+        <br />
+        <p>
+          Feel free to snoop around my files and folders to learn more about me
+          and my work.
+        </p>
+        <br />
+        <p>
+          For a fun and interactive user experience, be sure to check out the
+          site on pc.
+        </p>
+        <div class="btn-container">
+          <button class="close">Close</button>
+        </div>
+      </div>
+    </div>
     <header>
       <div class="header_left">
         <div class="home">
@@ -34,7 +53,9 @@
     <main>
       <div class="desktop">
         <div class="draggable">
-          <img src="icons/notepad-5.png" alt="" />
+          <a href="readme.html">
+            <img src="icons/notepad-5.png" alt="" />
+          </a>
           <a href="readme.html"><h2>READ(about)ME</h2></a>
         </div>
         <div class="draggable">
@@ -139,64 +160,128 @@
         });
       }
 
+      // Loop through each draggable element and attach the drag functionality
       draggableElements.forEach((element) => {
-        element.addEventListener("mousedown", (e) => {
-          startX = e.clientX - element.offsetLeft;
-          startY = e.clientY - element.offsetTop;
-
-          // Set this element as the target for dragging
-          activeDraggableElement = element;
-
-          //console.log(element)
-
-          // Add event listeners for mousemove and mouseup on the document
-          document.addEventListener("mousemove", onMouseMove);
-          document.addEventListener("mouseup", onMouseUp);
-
-          // Add a class to change appearance while dragging
-          activeDraggableElement.classList.add("dragging");
-        });
+        // Call the dragElement function for each element
+        dragElement(element);
       });
 
-      draggableElements.forEach((element) => {
-        element.addEventListener("click", (e) => {
-          const anchor = element.querySelector("a");
-          console.log("click", e);
-          console.log("anchor", anchor);
-          anchor.classList.add("highlight");
-          setTimeout(() => {
-            anchor.classList.remove("highlight");
-          }, 200);
-          setTimeout(() => {
-            anchor.classList.add("highlight");
-          }, 300);
-          setTimeout(() => {
-            anchor.classList.remove("highlight");
-          }, 500);
-        });
-      });
+      // Define the dragElement function
+      function dragElement(elmnt) {
+        var pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
 
-      function onMouseMove(e) {
-        if (!activeDraggableElement) return;
+        elmnt.onmousedown = dragMouseDown;
 
-        const x = e.clientX - startX;
-        const y = e.clientY - startY;
+        function dragMouseDown(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // get the mouse cursor position at startup:
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          // call a function whenever the cursor moves:
+          document.onmousemove = elementDrag;
+        }
 
-        // Update the position of the active draggable element
-        activeDraggableElement.style.left = `${x}px`;
-        activeDraggableElement.style.top = `${y}px`;
+        function elementDrag(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // calculate the new cursor position:
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          // set the element's new position:
+          elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+          elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        }
+
+        function closeDragElement() {
+          // stop moving when the mouse button is released:
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
       }
 
-      function onMouseUp() {
-        if (!activeDraggableElement) return;
+      // OLD SOLUTION
+      // draggableElements.forEach((element) => {
+      //   element.addEventListener("mousedown", (e) => {
+      //     startX = e.clientX - element.offsetLeft;
+      //     startY = e.clientY - element.offsetTop;
 
-        // Remove event listeners and the dragging class
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
-        activeDraggableElement.classList.remove("dragging");
+      //     // Set this element as the target for dragging
+      //     activeDraggableElement = element;
 
-        // Reset the active draggable element after dragging ends
-        activeDraggableElement = null;
+      //     //console.log(element)
+
+      //     // Add event listeners for mousemove and mouseup on the document
+      //     document.addEventListener("mousemove", onMouseMove);
+      //     document.addEventListener("mouseup", onMouseUp);
+
+      //     // Add a class to change appearance while dragging
+      //     activeDraggableElement.classList.add("dragging");
+      //   });
+      // });
+
+      // draggableElements.forEach((element) => {
+      //   element.addEventListener("click", (e) => {
+      //     const anchor = element.querySelector("a");
+      //     console.log("click", e);
+      //     console.log("anchor", anchor);
+      //     anchor.classList.add("highlight");
+      //     setTimeout(() => {
+      //       anchor.classList.remove("highlight");
+      //     }, 200);
+      //     setTimeout(() => {
+      //       anchor.classList.add("highlight");
+      //     }, 300);
+      //     setTimeout(() => {
+      //       anchor.classList.remove("highlight");
+      //     }, 500);
+      //   });
+      // });
+
+      // function onMouseMove(e) {
+      //   if (!activeDraggableElement) return;
+
+      //   const x = e.clientX - startX;
+      //   const y = e.clientY - startY;
+
+      //   // Update the position of the active draggable element
+      //   activeDraggableElement.style.left = `${x}px`;
+      //   activeDraggableElement.style.top = `${y}px`;
+      // }
+
+      // function onMouseUp() {
+      //   if (!activeDraggableElement) return;
+
+      //   // Remove event listeners and the dragging class
+      //   document.removeEventListener("mousemove", onMouseMove);
+      //   document.removeEventListener("mouseup", onMouseUp);
+      //   activeDraggableElement.classList.remove("dragging");
+
+      //   // Reset the active draggable element after dragging ends
+      //   activeDraggableElement = null;
+      // }
+
+      // Loop through each draggable element and attach the double-click event
+      draggableElements.forEach((element) => {
+        // Call the setupDoubleClick function for each element
+        setupDoubleClick(element);
+      });
+
+      // Define the setupDoubleClick function
+      function setupDoubleClick(elmnt) {
+        const anchor = elmnt.querySelector("a");
+
+        elmnt.addEventListener("dblclick", function () {
+          if (anchor && anchor.href) {
+            window.location.href = anchor.href; // Redirect to the anchor's href
+          }
+        });
       }
 
       if (
@@ -206,7 +291,7 @@
       ) {
         // Display an alert if the user is on a mobile device
         alert(
-          "Kan se du er på mobil! Nogle af mine skoleprojekter kan bedst opleves på en større skærm!"
+          "Check out my portfolio and projects on a desktop for the best experience"
         );
         const desktop = document.querySelector(".desktop");
         const isGrid = desktop.classList.toggle("grid-layout");
@@ -220,7 +305,7 @@
         });
       }
 
-      // prøv at lave en linkt ag rundt om hele diven
+      // prøv at lave en anchor tag rundt om hele diven
       // eller prøv at lav en eventlistener click på diven som highligther linket under med en sej effekt
       // sorting funktionalitet med et grid
       // zindex fix
