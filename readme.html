@@ -12,14 +12,32 @@
     <script src="ur.js"></script>
     <style>
       .text_container {
-        margin: 2rem;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
         width: 43vw;
+        margin: 1rem;
+        gap: 2rem;
       }
       header {
         margin: 1rem;
+      }
+
+      @media screen and (max-width: 1268px) {
+        .text_container {
+          margin: 0rem;
+          display: flex;
+          flex-direction: column;
+          width: 66vw;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .text_container {
+          margin: 0rem;
+          display: flex;
+          flex-direction: column;
+          width: 77vw;
+        }
       }
     </style>
   </head>
