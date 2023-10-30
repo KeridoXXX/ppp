@@ -46,8 +46,15 @@
           </span>
         </div>
       </div>
-      <div class="clock">
-        <div id="time"></div>
+      <div class="header_right">
+        <div class="clock">
+          <div id="time"></div>
+        </div>
+        <div class="toggle_bg">
+          <span class="material-symbols-outlined" style="font-size: 3.2rem">
+            image
+          </span>
+        </div>
       </div>
     </header>
     <main>
@@ -101,8 +108,8 @@
           >
         </div>
         <div class="draggable">
-          <img src="icons/smallpic.png" alt="" />
-          <a href="icons/bigpic.png"><h2>billede</h2></a>
+          <img src="icons/billede.png" alt="" />
+          <a href="icons/_52A4317.jpg"><h2>billede</h2></a>
         </div>
         <div class="draggable">
           <img src="icons/mailbox_world-2.png" alt="" />
@@ -112,11 +119,6 @@
           <img src="icons/github.png" alt="" />
           <a href="https://github.com/KeridoXXX"><h2>github</h2></a>
         </div>
-      </div>
-      <div class="toggle_bg">
-        <span class="material-symbols-outlined" style="font-size: 3.2rem">
-          image
-        </span>
       </div>
     </main>
     <footer></footer>
@@ -213,67 +215,6 @@
         }
       }
 
-      // OLD SOLUTION
-      // draggableElements.forEach((element) => {
-      //   element.addEventListener("mousedown", (e) => {
-      //     startX = e.clientX - element.offsetLeft;
-      //     startY = e.clientY - element.offsetTop;
-
-      //     // Set this element as the target for dragging
-      //     activeDraggableElement = element;
-
-      //     //console.log(element)
-
-      //     // Add event listeners for mousemove and mouseup on the document
-      //     document.addEventListener("mousemove", onMouseMove);
-      //     document.addEventListener("mouseup", onMouseUp);
-
-      //     // Add a class to change appearance while dragging
-      //     activeDraggableElement.classList.add("dragging");
-      //   });
-      // });
-
-      // draggableElements.forEach((element) => {
-      //   element.addEventListener("click", (e) => {
-      //     const anchor = element.querySelector("a");
-      //     console.log("click", e);
-      //     console.log("anchor", anchor);
-      //     anchor.classList.add("highlight");
-      //     setTimeout(() => {
-      //       anchor.classList.remove("highlight");
-      //     }, 200);
-      //     setTimeout(() => {
-      //       anchor.classList.add("highlight");
-      //     }, 300);
-      //     setTimeout(() => {
-      //       anchor.classList.remove("highlight");
-      //     }, 500);
-      //   });
-      // });
-
-      // function onMouseMove(e) {
-      //   if (!activeDraggableElement) return;
-
-      //   const x = e.clientX - startX;
-      //   const y = e.clientY - startY;
-
-      //   // Update the position of the active draggable element
-      //   activeDraggableElement.style.left = `${x}px`;
-      //   activeDraggableElement.style.top = `${y}px`;
-      // }
-
-      // function onMouseUp() {
-      //   if (!activeDraggableElement) return;
-
-      //   // Remove event listeners and the dragging class
-      //   document.removeEventListener("mousemove", onMouseMove);
-      //   document.removeEventListener("mouseup", onMouseUp);
-      //   activeDraggableElement.classList.remove("dragging");
-
-      //   // Reset the active draggable element after dragging ends
-      //   activeDraggableElement = null;
-      // }
-
       // Loop through each draggable element and attach the double-click event
       draggableElements.forEach((element) => {
         // Call the setupDoubleClick function for each element
@@ -297,16 +238,18 @@
         )
       ) {
         // Display an alert if the user is on a mobile device
-        alert(
-          "Check out my portfolio and projects on a desktop for the best experience"
-        );
+        // alert(
+        //   "Check out my portfolio and projects on a desktop for the best experience"
+        // );
         const desktop = document.querySelector(".desktop");
         const isGrid = desktop.classList.toggle("grid-layout");
         // Switch to grid layout
+        backgroundBtn.style.display = "none";
         desktop.style.display = "grid";
+
         desktop.style.gridTemplateColumns =
-          "repeat(auto-fill, minmax(150px, 1fr))";
-        desktop.style.gridGap = "1.5rem";
+          "repeat(auto-fill, minmax(110px, 1fr))";
+        desktop.style.gridGap = "4.5rem";
         draggableElements.forEach((element) => {
           element.style.position = "static";
         });
@@ -317,6 +260,8 @@
         "url('papes/bg-img1.webp')",
         "url('papes/bg-img2.webp')",
         "url('papes/bg-img3.webp')",
+        "url('papes/bg-img4.webp')",
+        "url('papes/bg-img5.webp')",
         "none",
       ];
 

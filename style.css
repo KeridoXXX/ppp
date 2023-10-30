@@ -21,6 +21,14 @@ main {
 .header_left {
   display: flex;
   align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .grid {
@@ -32,13 +40,11 @@ main {
 }
 
 .toggle_cont {
-  margin: 2rem;
   border: 4px solid black;
   display: inline-block;
 }
 
 .toggle_bg {
-  margin: 2rem;
   display: flex;
   justify-content: end;
   cursor: pointer;
