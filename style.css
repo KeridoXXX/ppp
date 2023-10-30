@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background-size: cover;
+}
+
 header {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -33,9 +37,16 @@ main {
   display: inline-block;
 }
 
+.toggle_bg {
+  margin: 2rem;
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+}
+
 .desktop {
-  width: 100vw;
-  height: 70vh;
+  width: 90vw;
+  height: 65vh;
 }
 
 .draggable {
