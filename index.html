@@ -113,17 +113,24 @@
           <a href="https://github.com/KeridoXXX"><h2>github</h2></a>
         </div>
       </div>
+      <div class="toggle_bg">
+        <span class="material-symbols-outlined" style="font-size: 3.2rem">
+          image
+        </span>
+      </div>
     </main>
     <footer></footer>
     <script>
       const draggableElements = document.querySelectorAll(".draggable");
       const gridBtn = document.querySelector(".grid");
+      const backgroundBtn = document.querySelector(".toggle_bg");
       let startX = 0;
       let startY = 0;
       let activeDraggableElement = null;
 
       window.addEventListener("load", shuffle);
       gridBtn.addEventListener("click", toggleGrid);
+      backgroundBtn.addEventListener("click", changeBackground);
 
       function toggleGrid() {
         const desktop = document.querySelector(".desktop");
@@ -303,6 +310,22 @@
         draggableElements.forEach((element) => {
           element.style.position = "static";
         });
+      }
+
+      let activeBackground = -1;
+      let backgrounds = [
+        "url('papes/bg-img1.webp')",
+        "url('papes/bg-img2.webp')",
+        "url('papes/bg-img3.webp')",
+        "none",
+      ];
+
+      function changeBackground() {
+        activeBackground++;
+        if (activeBackground > backgrounds.length - 1) {
+          activeBackground = 0;
+        }
+        document.body.style.backgroundImage = backgrounds[activeBackground];
       }
 
       // prøv at lave en anchor tag rundt om hele diven
