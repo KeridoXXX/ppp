@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   if (!getCookie("modalShown")) {
-    // The modal has not been shown during this visit, so display it.
+    // show
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
 
-    // Close the modal when the "X" is clicked
+    // closing the modal
     var closeBtn = document.getElementsByClassName("close")[0];
     closeBtn.addEventListener("click", function () {
       modal.style.display = "none";
